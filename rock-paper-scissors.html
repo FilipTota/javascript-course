@@ -133,6 +133,39 @@
       const currency2 = undefined || "USD";
       // now the default value for the currency is set to USD
       console.log("currency2 :>> ", currency2);
+
+      //Exercises:
+      let date = new Date();
+      // let hour = date.getHours();
+      let hour = 12;
+      let name = "John";
+      console.log("hour :>> ", hour);
+      if (hour > 6 && hour < 12) console.log(`Good morning ${name}!`);
+      else if (hour >= 12 && hour < 17) console.log(`Good afternoon ${name}!`);
+      else console.log(`Good night ${name}!`);
+
+      let age = 80;
+      const isHoliday = false;
+      console.log("!isHoliday :>> ", !isHoliday);
+      if ((age <= 6 || age >= 65) && !isHoliday) {
+        console.log("Discount");
+      } else {
+        console.log("No disccount");
+      }
+
+      // Javascript for coin flip exercise
+      let randomNum = Math.random();
+      let result = "";
+      let guess = "tails";
+
+      // if (randomNum <= 0.5) result = "heads";
+      // else result = "tails";
+      // if (guess === result) console.log("You win!");
+      // else console.log("You lose!");
+
+      // shorter and faster example of if statements from above
+      result = randomNum <= 0.5 ? "heads" : "tails";
+      guess === result ? console.log("You win!") : console.log("You lose!");
     </script>
   </body>
 </html>

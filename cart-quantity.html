@@ -10,37 +10,75 @@
     <button onclick="console.log(`Cart Quantity: ${cartQuantity}`)">
       Show Quantity
     </button>
+
+    <!-- Exercise example if cart has maximum quantity of 10, if we exceed 10 then we don't update it and dispaly a message that the cart is full -->
     <button
       onclick="
-        cartQuantity += 1;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        if (cartQuantity + 1 > 10) alert('The cart is full!');
+        else {
+          cartQuantity += 1;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
     "
     >
       Add to Cart
     </button>
     <button
       onclick="
-        cartQuantity += 2;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        if(cartQuantity + 2 > 10) alert('The cart if full');
+        else {
+          cartQuantity += 2;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
     "
     >
       +2
     </button>
     <button
       onclick="
-        cartQuantity += 3;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        if(cartQuantity + 3 > 10) alert('The cart if full');
+        else {
+          cartQuantity += 3;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
     "
     >
       +3
     </button>
+
+    <!-- Exercise example if we remove items from cart with functionality of updating cart, if it goes bellow 0 we don't update it -->
     <button
       onclick="
-        cartQuantity -= 1;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        if(cartQuantity - 1 < 0) alert('Not enough items in the cart');
+        else {
+          cartQuantity --;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
     "
     >
       Remove from Cart
+    </button>
+    <button
+      onclick="
+        if(cartQuantity - 2 < 0) alert('Not enough items in the cart');
+        else {
+          cartQuantity -= 2;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
+    "
+    >
+      -2
+    </button>
+    <button
+      onclick="
+        if(cartQuantity - 3 < 0) alert('Not enough items in the cart');
+        else {
+          cartQuantity -= 3;
+          console.log(`Cart Quantity: ${cartQuantity}`);
+        }
+    "
+    >
+      -3
     </button>
     <button
       onclick="
