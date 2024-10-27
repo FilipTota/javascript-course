@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      const product = {
+        name: "socks",
+        price: 1090,
+      };
+
+      console.log("product :>> ", product);
+
+      //   Dot Notation
+      console.log("product.name :>> ", product.name);
+      console.log("product.price :>> ", product.price);
+
+      //we can change propery values
+      product.name = "cotton socks";
+      console.log("product :>> ", product);
+
+      //we can also add new values to an object
+      product.newProperty = true;
+      console.log("product :>> ", product);
+
+      //we can remove value from an object
+      delete product.newProperty;
+      console.log("product :>> ", product);
+
+      //-----------------------------------------------------------------------------//
+
+      const product2 = {
+        name: "shirt",
+        "delivery-time": "1 day",
+        // nested object
+        rating: {
+          stars: 4.5,
+          count: 87,
+        },
+        // we can also add functions inside objects
+        // this function is called method (continuing on line 63)
+        fun: function funcion1() {
+          console.log("Function inside object");
+        },
+      };
+
+      console.log("product2 :>> ", product2);
+
+      // Bracket Notation
+      console.log("product2['name'] :>> ", product2["name"]);
+
+      // Brackets are used to access object values if we cant use them with dot notation.
+      // Example product2.delivery-time cant be accessed because in this case of a propery name (delivery-time) code thinks that - is the actual minus operator so we use brackets like the example bellow
+      console.log("product2['delivery-time'] :>> ", product2["delivery-time"]);
+
+      // To access nested objects we use dot or bracket notation multiple times
+      console.log("product2.rating.count :>> ", product2.rating.count);
+
+      // Accessing function
+      product2.fun();
+
+      // console.log() and Math.random that has been used throughout this course are also methods
+      // console is and object provided by the language and log is a function inside this object (so it's called a method)
+      // same is with Math.random()
+      // these are Built-in Objects (because they are built-in in the language, they are provided by the language)
+
+      // 2 more Built-in Objects that we are gonna learn: JSON and localStorage
+      // JSON (JavaScript Object Notation)
+      //   - a syntax
+      //   - similar to JavaScript object
+      //   - it has less features
+      // in JSON all propertyes and string must use "" in the naming (JSON doesn't support '')
+      // and JSON doesn't support functions
+      // we use JSON because JavaScript object syntax only makes sense in JavaScript, on the other hand JSON syntax can be understand by almost every programing language (JSON syntax is more universal)
+
+      // for that reason we use JSON when we send data between computers that might use differnet programing languages
+      // we also use JSON when we store data
+
+      // Examples:
+
+      //JSON
+      // Converting JavaScript object to JSON
+      let product2AsJSON = JSON.stringify(product2);
+      console.log("product2AsJSON :>> ", product2AsJSON);
+
+      // Converting from JSON back to JavaScript object using JSON.parse()
+      let parsedJSON = JSON.parse(product2AsJSON);
+      console.log("parsedJSON :>> ", parsedJSON);
+
+      // localStorage
+      // used to save values more peramanently
+      // so far we have been saving our values inside variables, but variables are only temporaty, they exist only on the current page -> if we refresh our page or close our page all the variables are deleted
+      // localStorage doesn't get deleted when we refresh the page
+      // usage example inside rock-paper-scissors file (line 77)
+
+      //-----------------------------------------------------------------------------//
+
+      // Auto-boxing
+      console.log("hello".length);
+      console.log("hello".toUpperCase());
+
+      // Objects are references
+      // when we create the object, the actual value is created somewhere in the computers memory and this variable actually gets reference (in this case {message: 'hello'}) that points to to that location in computers memory
+      const object1 = {
+        message: "hello",
+      };
+      // copy by reference
+      const object2 = object1;
+
+      object1.message = "good job";
+      console.log("object1 :>> ", object1);
+      console.log("object2 :>> ", object2);
+
+      const object3 = {
+        message: "good job",
+      };
+      console.log("object3 :>> ", object3);
+      console.log("object3 === object1 :>> ", object3 === object1); // different reference
+      console.log("object2 === object1 :>> ", object2 === object1); // same reference
+      // when comparing two object we are actually comparing references, not the values of these two objects
+
+      // Shortcuts for objects
+      const object4 = {
+        message: "good job",
+        price: 799,
+      };
+      console.log("object4.message :>> ", object4.message);
+      //   const message = object4.message;
+      // Destructuring, same as const message above
+      // Destructuring (easier way to take properties out of an object)
+      const { message, price } = object4;
+      console.log("message :>> ", message);
+      console.log("price :>> ", price);
+
+      // Shorthand property
+      const object5 = {
+        /*message: message,*/ // if we have property and value with the same name,
+        message, // we can just type it like this, this is called shorthand property
+      };
+      console.log("object5 :>> ", object5);
+
+      //Shorthand method
+      const object6 = {
+        // method: function function2() {
+        //   console.log("method");
+        // },
+
+        // this code does same thing as the code above, it's a shortcut for the code above and it is called shorthand method
+        method() {
+          console.log("method");
+        },
+      };
+      object6.method();
+    </script>
+  </body>
+</html>
