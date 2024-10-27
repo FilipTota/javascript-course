@@ -20,124 +20,41 @@
   <body>
     <h1>Calculator</h1>
     <p>
-      <button
-        onclick="
-            calculation += '1'
-            console.log(calculation)
-        "
-      >
-        1
-      </button>
-      <button
-        onclick="
-            calculation += '2'
-            console.log(calculation)
-        "
-      >
-        2
-      </button>
-      <button
-        onclick="
-            calculation += '3'
-            console.log(calculation)
-        "
-      >
-        3
-      </button>
+      <button onclick="calculate(1)">1</button>
+      <button onclick="calculate(2)">2</button>
+      <button onclick="calculate(3)">3</button>
     </p>
     <p>
-      <button
-        onclick="
-              calculation += '4'
-              console.log(calculation)
-          "
-      >
-        4
-      </button>
-      <button
-        onclick="
-              calculation += '5'
-              console.log(calculation)
-          "
-      >
-        5
-      </button>
-      <button
-        onclick="
-              calculation += '6'
-              console.log(calculation)
-          "
-      >
-        6
-      </button>
-      <button
-        class="plus-sign"
-        onclick="
-          calculation += ' + '
-          console.log(calculation)
-      "
-      >
-        +
-      </button>
-      <button
-        onclick="
-          calculation = eval(calculation)
-          console.log(calculation)
-          console.log(`Result = ${calculation}`);
-      "
-      >
-        =
-      </button>
+      <button onclick="calculate(4)">4</button>
+      <button onclick="calculate(5)">5</button>
+      <button onclick="calculate(6)">6</button>
+      <button class="plus-sign" onclick="calculate(' + ')">+</button>
+      <button onclick="calculate('=')">=</button>
     </p>
     <p>
-      <button
-        onclick="
-              calculation += '7'
-              console.log(calculation)
-          "
-      >
-        7
-      </button>
-      <button
-        onclick="
-              calculation += '8'
-              console.log(calculation)
-          "
-      >
-        8
-      </button>
-      <button
-        onclick="
-              calculation += '9'
-              console.log(calculation)
-          "
-      >
-        9
-      </button>
+      <button onclick="calculate(7)">7</button>
+      <button onclick="calculate(8)">8</button>
+      <button onclick="calculate(9)">9</button>
     </p>
     <p>
-      <button
-        class="number-zero"
-        onclick="
-              calculation += '0'
-              console.log(calculation)
-          "
-      >
-        0
-      </button>
-      <button
-        class="reset-button"
-        onclick="
-              calculation = ''
-              console.log(`Result = 0`)
-          "
-      >
-        Reset
-      </button>
+      <button class="number-zero" onclick="calculate(0)">0</button>
+      <button class="reset-button" onclick="calculate('reset')">Reset</button>
     </p>
 
     <script>
       let calculation = "";
+      function calculate(value) {
+        if (value === "=") {
+          calculation = eval(calculation);
+          console.log(`Result = ${calculation}`);
+        } else if (value === "reset") {
+          calculation = "";
+          console.log(`Result = 0`);
+        } else {
+          calculation += value;
+          console.log("calculation :>> ", calculation);
+        }
+      }
     </script>
   </body>
 </html>
