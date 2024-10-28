@@ -6,6 +6,8 @@
     <title>Objects</title>
   </head>
   <body>
+    <button onclick="getGameResult('heads')">heads</button>
+    <button onclick="getGameResult('tails')">tails</button>
     <script>
       const product = {
         name: "socks",
@@ -154,6 +156,77 @@
         },
       };
       object6.method();
+
+      // Additional exercises:
+      const basketball = {
+        price: 2095,
+      };
+      console.log("basketball.price :>> ", basketball.price);
+
+      basketball.price += 500;
+      console.log("basketball.price :>> ", basketball.price);
+
+      basketball["delivery-time"] = "3 days";
+      console.log("basketball :>> ", basketball);
+
+      // --------------------------------------------------------------------//
+
+      const firstProduct = {
+        name: "lobster",
+        price: 30.0,
+      };
+      const secondProduct = {
+        name: "tuna steak",
+        price: 40.0,
+      };
+
+      // return the product that is less expensive
+      function comparePrice(product1, product2) {
+        if (product1.price < product2.price) return product1;
+        return product2;
+      }
+      console.log(
+        "comparePrice(firstProduct, secondProduct) :>> ",
+        comparePrice(firstProduct, secondProduct)
+      );
+
+      // return true if 2 products have same values inside
+      function isSameProduct(product1, product2) {
+        if (
+          // object are references to we can't compare them directly
+          product1.name === product2.name &&
+          product1.price === product2.price
+        )
+          return true;
+        else return false;
+      }
+      console.log(
+        "isSameProduct(firstProduct, secondProduct) :>> ",
+        isSameProduct(firstProduct, secondProduct)
+      );
+
+      // repeat string many times
+      let text = "hello.";
+      console.log("text.repeat(2) :>> ", text.repeat(2));
+      console.log("text.repeat(4) :>> ", text.repeat(4));
+
+      // imporved coin flip game from exercise 6j (file rock-paper-scissors.html, line 156)
+      let result = "";
+      const score = JSON.parse(localStorage.getItem("score")) || {
+        wins: 0,
+        losses: 0,
+      };
+
+      function getGameResult(guess) {
+        let randomNum = Math.random();
+        result = randomNum <= 0.5 ? "heads" : "tails";
+        guess === result
+          ? ((score.wins += 1), console.log("You win!"))
+          : ((score.losses += 1), console.log("You lose!"));
+        localStorage.setItem("score", JSON.stringify(score));
+      }
+
+      console.log("score :>> ", score);
     </script>
   </body>
 </html>
