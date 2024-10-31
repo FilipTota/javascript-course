@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Projects</title>
+  </head>
+  <body>
+    <p>YouTube Subscribe Button</p>
+    <button class="subscribe-button" onclick="subscribe()">Subscribe</button>
+
+    <hr />
+
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <!-- input element does not have text inside, instead it has value, and we access that value though value property and not with document.querySelector.innerHTML-->
+    <input
+      type="text"
+      placeholder="Cost of order"
+      class="cost-input"
+      onkeydown="handleKeydownEnter(event)"
+    />
+    <button onclick="calculateOrder()">Calculate</button>
+    <p class="total-cost"></p>
+
+    <script>
+      // if we want to calculate string and number, when using string + number we have to converte string to a number, but if we have a string, that is only a number (example: '25'), and we use (- or * or /) JavaScript will automatically convert string into a number
+      console.log('"25" + 1 :>> ', "25" + 1); // --> string
+      console.log('"25" - 5 :>> ', "25" - 5); // --> number
+
+      // always do math using numbers, don't do math using strings (convert the strings intu a number manualy (using Number(), parseInt(), parseFloat()))
+
+      function subscribe() {
+        let subscribe = document.querySelector(".subscribe-button");
+        // with .innerHTML, Subscribe button text bellow is saved inside subscribe variable with extra spaces.
+        // if(subscribe.innerHTML === 'Subscribe') {
+        //     subscribe.innerHTML = 'Subscribed'
+        // } else {
+        //     subscribe.innerHTML = 'Subscribe'
+        // }
+        // if we want to fix that, we need to select button with .innerText, like in the example bellow
+        if (subscribe.innerText === "Subscribe") {
+          subscribe.innerText = "Subscribed";
+        } else {
+          subscribe.innerText = "Subscribe";
+        }
+      }
+
+      function calculateOrder() {
+        const costInput = document.querySelector(".cost-input");
+        let cost = costInput.value;
+
+        if (cost < 40) {
+          // whenever we get a value from DOM, we will get string, so in this case we need to convert cost into a number
+          cost = Number(cost) + 10;
+        }
+        document.querySelector(".total-cost").innerHTML = `$${cost}`;
+      }
+
+      function handleKeydownEnter(e) {
+        if (e.keyCode === 13) calculateOrder();
+      }
+    </script>
+  </body>
+</html>

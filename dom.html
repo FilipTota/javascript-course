@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <button>hello</button>
+    <button class="js-button">Second button</button>
+
+    <script>
+      // document.body.innerHTML = "hello"; removes everything from page and replaces it with string 'hello'
+      // document.body.innerHTML = "hello";
+
+      // changing page title
+      //   document.title = "Good job";
+
+      // document object is linked to the page. The document object represents/models the webpage (Document Object Model - DOM)
+      // if we change something in the document object it will also change the webpage
+
+      //----------------------------------------------------------------------------------------------//
+
+      //   console.log(document.title);
+      //   document.title = "Changed";
+
+      //   console.log(document.body);
+      //   console.log(typeof document.body); // object
+
+      // The DOM combines JavaScript and HTML together (we can have HTML elements inside JavaScript...gives JavaScript controll of the webpage)
+
+      //   console.log(document.body.innerHTML);
+      //.innerHTML gives us control of all the HTML inside body (we can get this HTML and we can also change this HTML)
+      //   document.body.innerHTML = "<button>Good job!</button>";
+
+      //----------------------------------------------------------------------------------------------//
+
+      // document.querySelector() is a method inside document objet that lets us get any element from the page and put it inside JavaScript
+      //   document.querySelector();
+
+      console.log(
+        "document.querySelector('button') :>> ",
+        document.querySelector("button")
+      );
+      console.log(
+        "document.querySelector('button').innerHTML :>> ",
+        document.querySelector("button").innerHTML
+      );
+
+      // selects the first button element
+      document.querySelector("button").innerHTML = "Changed";
+
+      // selects the button with a class attribute called js-button
+      document.querySelector(".js-button").innerHTML = "Second button changed";
+    </script>
+  </body>
+</html>
