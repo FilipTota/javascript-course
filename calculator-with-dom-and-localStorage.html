@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      .number-zero {
+        margin: 0 0 0 27px;
+      }
+      .plus-sign {
+        margin: 0 0 0 10px;
+      }
+      .reset-button {
+        margin: 0 0 0 38px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <p>
+      <button onclick="calculate(1)">1</button>
+      <button onclick="calculate(2)">2</button>
+      <button onclick="calculate(3)">3</button>
+    </p>
+    <p>
+      <button onclick="calculate(4)">4</button>
+      <button onclick="calculate(5)">5</button>
+      <button onclick="calculate(6)">6</button>
+      <button class="plus-sign" onclick="calculate(' + ')">+</button>
+      <button onclick="calculate('=')">=</button>
+    </p>
+    <p>
+      <button onclick="calculate(7)">7</button>
+      <button onclick="calculate(8)">8</button>
+      <button onclick="calculate(9)">9</button>
+    </p>
+    <p>
+      <button class="number-zero" onclick="calculate(0)">0</button>
+      <button class="reset-button" onclick="calculate('reset')">Reset</button>
+    </p>
+
+    <!-- Display the calculation using DOM on the page instead of console.log -->
+    <p class="calculation-paragraph"></p>
+
+    <script>
+      let calculation = localStorage.getItem("calculation") || "";
+      // display calculation if calculation exists on page load inside localStorage
+      if (calculation !== JSON.stringify("")) displayCalculation();
+
+      function calculate(value) {
+        if (value === "=") {
+          calculation = eval(calculation);
+          localStorage.setItem("calculation", JSON.stringify(calculation));
+          // console.log(`Result = ${calculation}`);
+          // display calculation with DOM instead of console.log
+          displayCalculation();
+        } else if (value === "reset") {
+          calculation = "";
+          localStorage.setItem("calculation", JSON.stringify(calculation));
+          // console.log(`Result = 0`);
+          displayCalculation();
+        } else {
+          calculation += value;
+          localStorage.setItem("calculation", JSON.stringify(calculation));
+          // console.log("calculation :>> ", calculation);
+          displayCalculation();
+        }
+      }
+
+      function displayCalculation() {
+        console.log("calculation :>> ", calculation);
+        calculation !== ""
+          ? (document.querySelector(
+              ".calculation-paragraph"
+            ).innerHTML = `Result = ${calculation}`)
+          : (document.querySelector(".calculation-paragraph").innerHTML = null);
+      }
+    </script>
+  </body>
+</html>

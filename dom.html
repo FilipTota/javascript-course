@@ -9,6 +9,50 @@
     <button>hello</button>
     <button class="js-button">Second button</button>
 
+    <!-- Additional exercises: -->
+    <button class="exercise-button">9a</button>
+    <button class="exercise-heads" onclick="displayChosen(event)">heads</button>
+    <button class="exercise-tails" onclick="displayChosen(event)">tails</button>
+    <p class="exercise-paragraph"></p>
+
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <input
+      type="text"
+      class="name-input"
+      placeholder="Name"
+      onkeydown="getNameValueWithEnter(event)"
+    />
+    <button class="submit-button" onclick="displayName()">Submit</button>
+    <p class="name-paragraph"></p>
+
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <!-- Copied from dom-projects file -->
+    <!-- Fixing the issue is we try to calculate decimal number (if we want to calcualte 7.99...total cost is displayed like this: $17.990000000000002) -->
+    <!-- Fix: -->
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <input
+      type="text"
+      placeholder="Cost of order"
+      class="cost-input"
+      onkeydown="handleKeydownEnter(event)"
+    />
+    <button onclick="calculateOrder()">Calculate</button>
+    <p class="total-cost"></p>
+
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <input
+      type="text"
+      placeholder="Type something"
+      onkeyup="onInputKeyUp(event)"
+    />
+    <p class="onInputKeyUp-paragraph"></p>
+
     <script>
       // document.body.innerHTML = "hello"; removes everything from page and replaces it with string 'hello'
       // document.body.innerHTML = "hello";
@@ -52,6 +96,74 @@
 
       // selects the button with a class attribute called js-button
       document.querySelector(".js-button").innerHTML = "Second button changed";
+
+      //----------------------------------------------------------------------------------//
+
+      // Additional exercises:
+      console.log(document.querySelector(".exercise-button"));
+      document.querySelector(".exercise-button").innerHTML = "9b done!";
+
+      function displayChosen(event) {
+        const heads = document.querySelector(".exercise-heads");
+        const tails = document.querySelector(".exercise-tails");
+        const paragraph = document.querySelector(".exercise-paragraph");
+
+        if (event.target === heads || event.target === tails)
+          paragraph.innerHTML = `You chose: ${event.target.innerHTML}`;
+      }
+
+      function getNameValueWithEnter(event) {
+        if (event.keyCode === 13) displayName();
+      }
+
+      function displayName() {
+        const inputValue = document.querySelector(".name-input").value;
+        document.querySelector(
+          ".name-paragraph"
+        ).innerHTML = `Your name is: ${inputValue}`;
+      }
+
+      //----------------------------------------------------------------------------------//
+
+      // Fix for Amazon total cost in decimals:
+      function calculateOrder() {
+        const costInput = document.querySelector(".cost-input");
+        // let cost = costInput.value;
+        // convert to cents
+        let cost = costInput.value * 100;
+
+        // In example with 7.99 -> 7.99 + 10 should theoretically equal 17.99, but because 7.99 can't be represented precisely in binary, we may end up with a value like 17.990000000000002 instead.
+
+        // JavaScript uses floating-point arithmetic, which can lead to precision issues when dealing with decimal numbers. This is due to how numbers are represented in binary format (IEEE 754 standard).
+
+        // To fix this we need to use .toFixed() to format the result to a specific number of decimal spaces:
+
+        // if (cost < 40) {
+        // // toFixed(2) converts number into string and then formats it to 2 decimal spaces
+        //   cost = (Number(cost) + 10).toFixed(2);
+        // }
+        // document.querySelector(".total-cost").innerHTML = `$${cost}`;
+
+        // Another solution: we can also calculate the number in cents and the convert back to dollars at the end
+        // Solution with cents:
+        if (cost < 4000) {
+          cost = Number(cost) + 1000;
+        }
+        document.querySelector(".total-cost").innerHTML = `$${cost / 100}`;
+      }
+
+      function handleKeydownEnter(e) {
+        if (e.keyCode === 13) calculateOrder();
+      }
+
+      //----------------------------------------------------------------------------------//
+
+      // another type of event listener:
+      function onInputKeyUp(event) {
+        const inputValue = event.target.value;
+        const paragraph = document.querySelector(".onInputKeyUp-paragraph");
+        paragraph.innerHTML = inputValue;
+      }
     </script>
   </body>
 </html>

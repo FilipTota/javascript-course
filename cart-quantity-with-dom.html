@@ -10,42 +10,47 @@
     <button onclick="console.log(`Cart Quantity: ${cartQuantity}`)">
       Show Quantity
     </button>
-
-    <!-- Exercise example if cart has maximum quantity of 10, if we exceed 10 then we don't update it and dispaly a message that the cart is full -->
     <button onclick="updateCartQuantity(1)">Add to Cart</button>
     <button onclick="updateCartQuantity(2)">+2</button>
     <button onclick="updateCartQuantity(3)">+3</button>
-
-    <!-- Exercise example if we remove items from cart with functionality of updating cart, if it goes bellow 0 we don't update it -->
     <button onclick="updateCartQuantity(-1)">Remove from Cart</button>
     <button onclick="updateCartQuantity(-2)">-2</button>
     <button onclick="updateCartQuantity(-3)">-3</button>
     <button onclick="updateCartQuantity('reset')">Reset Cart</button>
+    <!-- Display the quantity using DOM on the page instead of console.log -->
+    <p class="cart-quantity"></p>
 
     <script>
       let cartQuantity = 0;
 
+      // display Cart Quantity when the page first loads
+      displayCartQuantity();
+
       function updateCartQuantity(value) {
         if (value === "reset") {
           cartQuantity = 0;
-          console.log(`Cart was reset.\nCart Quantity: ${cartQuantity}`);
+          // console.log(`Cart was reset.\nCart Quantity: ${cartQuantity}`);
+          displayCartQuantity();
           return;
         }
 
         if (cartQuantity + value > 10) {
           alert("The cart if full");
-
-          // early return (it makes our code cleaner because we can remove else if, fuction stops after return and is called again onclick and gets exectued again from the beginning)
           return;
         }
         if (cartQuantity + value < 0) {
           alert("Not enough items in the cart");
           return;
         }
-
-        // if the function doesn't return in the if statements above, then it executes code bellow
         cartQuantity += value;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        displayCartQuantity();
+      }
+
+      function displayCartQuantity() {
+        document.querySelector(
+          ".cart-quantity"
+        ).innerHTML = `Cart Quantity: ${cartQuantity}`;
       }
     </script>
   </body>
