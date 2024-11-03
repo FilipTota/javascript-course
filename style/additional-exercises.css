@@ -1,0 +1,45 @@
+.exercises-paragraph {
+  margin: 200px 0 15px 0;
+}
+
+.exercise-container {
+  margin: 0 0 20px 0;
+}
+
+.add-to-cart-button {
+  background: rgb(255, 216, 20);
+  border: none;
+  padding: 10px 40px;
+  font-size: 15px;
+  border-radius: 50px;
+}
+
+.request-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 15px 25px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.schedule-button {
+  background: rgb(230, 230, 230);
+  padding: 14px 25px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.toggle-button {
+  background: green;
+  padding: 10px 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.is-toggled {
+  background: rgb(230, 230, 230);
+}
