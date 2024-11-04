@@ -39,6 +39,10 @@
         padding: 12px 15px;
         cursor: pointer;
       }
+
+      .error-message {
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -76,12 +80,22 @@
 
       function calculateOrder() {
         const costInput = document.querySelector(".cost-input");
+        const totalCostParagraph = document.querySelector(".total-cost");
         let cost = costInput.value;
+
+        if (cost < 0) {
+          // add class to display red error
+          totalCostParagraph.classList.add("error-message");
+          // display message
+          return (totalCostParagraph.innerHTML = `Error: cost cannot be less than $0`);
+        }
+
+        totalCostParagraph.classList.remove("error-message");
 
         if (cost < 40) {
           cost = Number(cost) + 10;
         }
-        document.querySelector(".total-cost").innerHTML = `$${cost}`;
+        totalCostParagraph.innerHTML = `$${cost}`;
       }
 
       function handleKeydownEnter(e) {

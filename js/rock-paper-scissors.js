@@ -51,12 +51,12 @@ function playGame(playerMove) {
   document.querySelector(".js-result").innerHTML = result;
   document.querySelector(".js-moves").innerHTML = `You
   <img
-    src="images/rock-paper-scissors/${playerMove}-emoji.png"
+    src="../../images/rock-paper-scissors/${playerMove}-emoji.png"
     alt=""
     class="move-icon"
   />
   <img
-    src="images/rock-paper-scissors/${computerMove}-emoji.png"
+    src="../../images/rock-paper-scissors/${computerMove}-emoji.png"
     alt=""
     class="move-icon"
   />

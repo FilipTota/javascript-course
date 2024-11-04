@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="style/rock-paper-scissors.css" />
-    <link rel="stylesheet" href="style/additional-exercises.css" />
+    <link rel="stylesheet" href="../../style/rock-paper-scissors.css" />
+    <link rel="stylesheet" href="../../style/additional-exercises.css" />
   </head>
   <body>
     <p class="title">Rock Paper Scissors</p>
 
     <button onclick="playGame('rock')" class="move-button">
       <img
-        src="images/rock-paper-scissors/rock-emoji.png"
+        src="../../images/rock-paper-scissors/rock-emoji.png"
         alt="rock-emoji"
         class="move-icon"
       />
     </button>
     <button onclick="playGame('paper')" class="move-button">
       <img
-        src="images/rock-paper-scissors/paper-emoji.png"
+        src="../../images/rock-paper-scissors/paper-emoji.png"
         alt="paper-emoji"
         class="move-icon"
       />
     </button>
     <button onclick="playGame('scissors')" class="move-button">
       <img
-        src="images/rock-paper-scissors/scissors-emoji.png"
+        src="../../images/rock-paper-scissors/scissors-emoji.png"
         alt="scissors-emoji"
         class="move-icon"
       />
@@ -51,12 +51,27 @@
       <button class="test-button">Test</button>
     </div>
     <div class="exercise-container">
-      <button class="toggle-button js-button1" onclick="toggleButton()">
+      <button
+        class="toggle-button js-button1"
+        onclick="toggleButton('js-button1')"
+      >
         Gaming
+      </button>
+      <button
+        class="toggle-button js-button2"
+        onclick="toggleButton('js-button2')"
+      >
+        Music
+      </button>
+      <button
+        class="toggle-button js-button3"
+        onclick="toggleButton('js-button3')"
+      >
+        Tech
       </button>
     </div>
 
-    <script src="js/rock-paper-scissors.js"></script>
-    <script src="js/additional-exercises.js"></script>
+    <script src="../../js/rock-paper-scissors.js"></script>
+    <script src="../../js/additional-exercises.js"></script>
   </body>
 </html>
