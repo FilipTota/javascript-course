@@ -77,6 +77,8 @@
     }
     console.log("numsDoubled :>> ", numsDoubled);
 
+    // ---------------------------------------------------------------------- //
+
     // Additional exercises:
     const arrOfNums = [10, 20, 30];
     arrOfNums[2] = 99;
@@ -260,5 +262,74 @@
       'countWords(["dog", "dog", "dog"]) :>> ',
       countWords(["dog", "dog", "dog"])
     );
+
+    // ---------------------------------------------------------------------- //
+
+    // More details about arrays and loops
+
+    // Arrays are references (same as objects)
+    const array1 = [1, 2, 3]; // this array is saved on the computer memory and this variable only contains reference that points to where this array is in the memory
+    // and that means:
+    // if we make a copy of array1
+    const array2 = array1;
+    // array2 doesn't contain a copy of the values, it actually just contains copy of the reference so now both of these variables are pointing to the same array
+    // so if we did:
+    array2.push(4);
+    // console loge both arrays:
+    console.log("array1 :>> ", array1);
+    console.log("array2 :>> ", array2);
+    // it shows that even though we added 4 to array2, array1 nad array2 were both modified
+
+    // to avoid this we can slice array1 to create a copy of the values in the array
+    // example:
+    const array3 = [1, 2, 3];
+    const array4 = array3.slice();
+    array4.push(4);
+    console.log("array3 :>> ", array3);
+    console.log("array4 :>> ", array4);
+    // in these examples we can se that we only modified array4 because we created a copy of array3 using .slice()
+
+    // Destructuring
+    const array5 = [1, 2, 3];
+    // get the first and second value out of this array
+    // one way to do this is to use index (const firstValue = array5[0]...)
+    // another way is to use shortcut like Destructuring:
+    const [firstValue, secondValue] = [1, 2, 3];
+    // first number get's saved inside firstValue variable, second number inside secondValue variable and so on...
+    console.log("firstValue :>> ", firstValue);
+    console.log("secondValue :>> ", secondValue);
+
+    // break - exit a loop early
+    for (let i = 0; i <= 10; i++) {
+      console.log("i-with-break :>> ", i); // count to 10
+      if (i === 8) {
+        break; // allows us to stop the loop (exit a loop early)
+      }
+    }
+
+    // continue - skip 1 iteration
+    for (let i = 0; i <= 10; i++) {
+      if (i === 3) {
+        continue; // this will skip the rest of the code and go back to top of a loop and run the loop from  i = 4
+      }
+
+      // dvisible by 3
+      if (i % 3 === 0) {
+        // this wil skip 3 and 6 because they are both devisible by 3
+        continue;
+      }
+
+      console.log("i-with-continue :>> ", i);
+      if (i === 8) {
+        break;
+      }
+    }
+
+    // examples with while loop
+    let index = 1;
+    while (index <= 10) {
+      console.log("index :>> ", index);
+      i++;
+    }
   </script>
 </html>

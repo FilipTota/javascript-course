@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.todo-container,
+.todo-input-container {
+  display: grid;
+  grid-template-columns: 200px 150px 100px;
+  column-gap: 10px;
+  row-gap: 10px;
+  align-items: center;
+  /* by default inside grid, align-items is set to stretch and when we set align-items to center, our Add button shrinks (it is not stretched anymore), to fix that we need to add align-items: stretch to .todo-input-container */
+}
+
+.todo-input-container {
+  margin-bottom: 10px;
+  align-items: stretch;
+}
+
+.todo-input,
+.todo-dueDate {
+  font-size: 15px;
+  padding: 6px;
+}
+
+.todo-add-button {
+  background: green;
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.todo-delete-button {
+  background: darkred;
+  color: white;
+  border: none;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
