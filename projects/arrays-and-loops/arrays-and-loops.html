@@ -348,5 +348,111 @@
     }
     console.log("doubleArray([1, 1, 3]) :>> ", doubleArray([1, 1, 3]));
     console.log("doubleArray([1, 4, 3, 2]) :>> ", doubleArray([1, 4, 3, 2]));
+
+    // ---------------------------------------------------------------------- //
+
+    // More additional exercises
+    // check if 'search' is inside array
+    let arrOfStrings = ["hello", "world", "search", "good", "search"];
+    // let arrOfStrings = ["not", "found"];
+
+    let searchResult = -1;
+
+    for (let i = 0; i < arrOfStrings.length; i++) {
+      if (arrOfStrings[i] === "search") {
+        searchResult = i;
+        break; // is multiple 'search' in array, break after the first found
+      }
+    }
+    console.log("searchResult :>> ", searchResult);
+
+    // create a function that searches an array for a string (in the word parameter)
+    function findIndex(array, word) {
+      let index = -1;
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] === word) {
+          index = i;
+          break;
+        }
+      }
+      return index;
+    }
+
+    console.log(
+      'findIndex(["hello", "world", "search", "good", "search", "good"], "good") :>> ',
+      findIndex(["hello", "world", "search", "good", "search", "good"], "good")
+    );
+    console.log(
+      'findIndex(["hello", "world", "search", "good", "search", "good"], "red") :>> ',
+      findIndex(["hello", "world", "search", "good", "search", "good"], "red")
+    );
+
+    // function that takes an array of strings and returns an array where the string 'egg' is removed
+    function removeEgg(foods) {
+      let result = [];
+      let egg = 0;
+
+      // To prevent modifying the original array, we can create a copy of the array using. slice()
+      const foodsCopy = foods.slice();
+      const reversedFoods = foodsCopy.reverse();
+      // reverse foods to remove "last two" egg strings (when reversed these are the first two), and then do the code bellow to remove it
+
+      for (let i = 0; i < reversedFoods.length; i++) {
+        if (reversedFoods[i] === "egg") {
+          // continue; // skip it
+          // update: remove only the first two egg strings
+          egg++;
+          if (egg < 3) {
+            continue;
+          }
+          // update: using .reverse() remove last two egg strings
+        }
+        result.push(reversedFoods[i]);
+      }
+
+      result.reverse(); // transfer result to original order and return it
+
+      console.log("foods :>> ", foods);
+      return result;
+    }
+
+    const foods = ["egg", "apple", "egg", "egg", "ham"];
+    console.log("removeEgg(foods) :>> ", removeEgg(foods));
+
+    // FizzBuzz problem, loop that displays 1 to 20 to console. If number is divisible by 3 display Fizz, if divisible by 5 display Buzz, if divisible by 3 and 5 display FizzBuzz
+    for (let i = 1; i <= 20; i++) {
+      if (i % 3 === 0 && i % 5 === 0) {
+        console.log("FizzBuzz");
+        continue;
+      }
+      if (i % 3 === 0) {
+        console.log("Fizz");
+        continue;
+      }
+      if (i % 5 === 0) {
+        console.log("Buzz");
+        continue;
+      }
+      console.log("i :>> ", i);
+    }
+
+    // function unique() that takes an array of strings and returns an array where each string only appears once (there are no duplicates)
+    // using findIndex function from befeore
+
+    function unique(array) {
+      let result = [];
+      for (let i = 0; i < array.length; i++) {
+        let word = array[i];
+        // using findIndex() we can check if the word is already inside the result array, if it's not in the result array index will be -1 and we can add it to the result array
+        if (findIndex(result, word) === -1) {
+          result.push(word);
+        }
+      }
+      return result;
+    }
+    const strings1 = ["egg", "apple", "egg", "egg", "ham"];
+    const strings2 = ["hello", "world", "search", "good", "search", "good"];
+    console.log("unique(strings1) :>> ", unique(strings1));
+    console.log("unique(strings2) :>> ", unique(strings2));
   </script>
 </html>
