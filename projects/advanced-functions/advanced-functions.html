@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Functions</title>
+  </head>
+  <body></body>
+  <script>
+    // this way of defining functions gives as a feature called
+    // Hoisting
+    // which means that we can call it before we create it in the code
+    // we dont need to worry about the order we write this code
+    greeting(); // example before
+    function greeting() {
+      console.log("hello");
+    }
+    greeting(); // example after
+
+    // with functions inside a variable we dont have this feature so we can call it only after it has been defined
+
+    // functions are values
+    const function1 = function () {
+      // anonymous function -> function without a name
+      // function is saved inside function1 variable
+      console.log("hello2");
+    };
+    console.log(function1);
+    function1(); // gets called with variable as a function
+
+    // we can save a value inside an object
+    const object1 = {
+      num: 2,
+      fun: function () {
+        // dont't need a  function name because we can access it with object1.fun
+        console.log("hello3");
+      },
+    };
+    // calling a method fun() -> it's called a method because it is a function saved inside an object
+    object1.fun();
+
+    // we can pass a value into a function
+    function display(param) {
+      console.log("param :>> ", param);
+    }
+    display(2);
+
+    // we can also pass a function into a function
+    // function that we are passing in is called Callback function
+    function run(param) {
+      param();
+    }
+    run(function () {
+      console.log("hello4");
+    });
+
+    // function are values --> anything we can do with a value we can also do with a function
+
+    // ---------------------------------------------------------------------- //
+
+    // practical examples of using functions as values
+    // setTimeout() -> allows us to run a function in the future
+
+    // first parameter is a function that we want to run and the second parameter is a time of how long we want to wait before running this function (number in milliseconds)
+    setTimeout(function () {
+      console.log("timeout");
+      console.log("timeout2"); // synchronous
+    }, 2000);
+
+    // Asynchronous code -> 'next line' gets displayed first and then after 2 seconds 'timeout' gets displayed
+    // asynchronous code won't wait for a line to finish before going to a next line
+
+    // Synchronous code will want for one line to finish before goint to the next line
+
+    console.log("next line");
+
+    // setInterval()
+    setInterval(function () {
+      console.log("interval");
+    }, 2000);
+    // it will keep running function every 2 seconds
+
+    console.log("nextline2");
+
+    // example of setInterval inside files rock-paper-scissors-with-setInterval
+
+    // ---------------------------------------------------------------------- //
+
+    // More features of functions as values
+    // .forEach()
+    let array = ["make dinner", "wash dishes", "watch youtube"];
+    array.forEach(function (value, index) {
+      if (value === "wash dishes") {
+        // it skips 'wash dishes' value and continues with next function
+        return;
+      }
+      console.log(index);
+      console.log(value);
+    });
+    // forEach is a preffered way to loop through an array
+    // practical example of forEach shown inside todo-list.js
+
+    // forEach method does not have continue feature as regular for loop nut we can use return
+    // example above -> if value is 'wash dishes' we're going to skip it
+
+    // in the previous lesson we also learned about feature break (to exit from for loop)
+    // forEach does not support that feature so if we need to exit for loop early it's better to use regular for loop
+  </script>
+</html>

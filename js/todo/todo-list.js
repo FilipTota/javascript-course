@@ -9,20 +9,32 @@ renderTodoList();
 
 function renderTodoList() {
   let todoListHTML = "";
-  for (let i = 0; i < todoList.length; i++) {
-    const todoObject = todoList[i];
-    // const name = todoObject.name;
-    // const dueDate = todoObject.dueDate;
-    // Destructuring - shortcut for the name and dueDate variables above
-    const { name, dueDate } = todoObject;
+  // for (let i = 0; i < todoList.length; i++) {
+  //   const todoObject = todoList[i];
+  //   // const name = todoObject.name;
+  //   // const dueDate = todoObject.dueDate;
+  //   // Destructuring - shortcut for the name and dueDate variables above
+  //   const { name, dueDate } = todoObject;
 
+  //   const html = `
+  //     <div>${name}</div>
+  //     <div>${dueDate}</div>
+  //     <button onclick="deleteTodo(${i})" class="todo-delete-button">Delete</button>
+  //   `;
+  //   todoListHTML += html;
+  // }
+
+  // swithing code above to use forEach method instead
+
+  todoList.forEach((todoObject, index) => {
+    const { name, dueDate } = todoObject;
     const html = `
       <div>${name}</div>
       <div>${dueDate}</div>
-      <button onclick="deleteTodo(${i})" class="todo-delete-button">Delete</button>
+      <button onclick="deleteTodo(${index})" class="todo-delete-button">Delete</button>
     `;
     todoListHTML += html;
-  }
+  });
   document.querySelector(".todo-container").innerHTML = todoListHTML;
 }
 
