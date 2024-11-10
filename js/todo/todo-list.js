@@ -31,12 +31,28 @@ function renderTodoList() {
     const html = `
       <div>${name}</div>
       <div>${dueDate}</div>
-      <button onclick="deleteTodo(${index})" class="todo-delete-button">Delete</button>
+      <button class="todo-delete-button">Delete</button>
     `;
     todoListHTML += html;
   });
   document.querySelector(".todo-container").innerHTML = todoListHTML;
+  // in the line above html code is placed inside html
+  // so we need to add eventListener bellow
+
+  // to get all element we need to use querySelectorAll to get list of delete buttons
+  // this list works like array so we can use forEach method to loop them
+  document
+    .querySelectorAll(".todo-delete-button")
+    .forEach((deleteButton, index) => {
+      deleteButton.addEventListener("click", () => deleteTodo(index));
+    });
+
+  // to use an evenetListener, delete button is just a string, to use is we need to put it inside html element
 }
+
+document
+  .querySelector(".todo-add-button")
+  .addEventListener("click", () => addTodo());
 
 function addTodo() {
   const inputElement = document.querySelector(".todo-input");

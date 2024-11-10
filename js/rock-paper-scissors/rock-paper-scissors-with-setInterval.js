@@ -11,12 +11,40 @@ updateScoreElement();
 let isAutoPlaying = false;
 let intervalId;
 
+// to use eventListener instead of onclick
+document
+  .querySelector(".js-rock-button")
+  .addEventListener("click", () => playGame("rock"));
+document
+  .querySelector(".js-paper-button")
+  .addEventListener("click", () => playGame("paper"));
+document
+  .querySelector(".js-scissors-button")
+  .addEventListener("click", () => playGame("scissors"));
+
+document
+  .querySelector(".reset-score-button")
+  .addEventListener("click", () => resetScore());
+document
+  .querySelector(".auto-play-button")
+  .addEventListener("click", () => autoPlay());
+
+// eventListener on key down
+document.body.addEventListener("keydown", (event) => {
+  // console.log("keydown");
+  // console.log("event :>> ", event);
+  // console.log("event.key :>> ", event.key);
+  if ((event.key = "r")) playGame("rock");
+  if ((event.key = "p")) playGame("paper");
+  if ((event.key = "s")) playGame("scissors");
+});
+
 function autoPlay() {
   if (!isAutoPlaying) {
     // setinterval returns a number and this number is like ID, we can use this ID to stop the interval
 
     // everytime we run the function we are gonna get a different variable so we need to put the variable outside the function
-    intervalId = setInterval(function () {
+    intervalId = setInterval(() => {
       const playerMove = pickComputerMove();
 
       // playGame() needs a person to pick a move, so we use pickComputerMove to give te playGame function random move
