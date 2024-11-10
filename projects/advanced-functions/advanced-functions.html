@@ -3,9 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advanced Functions</title>
+    <title class="document-title">Advanced Functions</title>
+    <link rel="stylesheet" href="../../style/advanced-functions.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="exercise-container">
+      <button class="start-button" onclick="changeToFinished()">Start</button>
+    </div>
+    <div class="exercise-container">
+      <button class="add-to-cart-button" onclick="added()">Add to cart</button>
+      <p class="added"></p>
+    </div>
+    <div class="exercise-container">
+      <span>Add or remove messages inside title: </span>
+      <button class="messages-add-button" onclick="addMessage()">Add</button>
+      <button class="messages-remove-button" onclick="removeMessage()">
+        Remove
+      </button>
+    </div>
+  </body>
   <script>
     // this way of defining functions gives as a feature called
     // Hoisting
@@ -105,5 +121,107 @@
 
     // in the previous lesson we also learned about feature break (to exit from for loop)
     // forEach does not support that feature so if we need to exit for loop early it's better to use regular for loop
+
+    // ---------------------------------------------------------------------- //
+
+    // Additional exercises
+
+    // function inside variable and run it twice
+    const add = function () {
+      console.log(2 + 3);
+    };
+
+    add();
+    add();
+
+    // function that gets function parameter and run it twice
+    function runTwice(fun) {
+      fun();
+      fun();
+    }
+
+    runTwice(() => console.log("12b"));
+    runTwice(() => console.log(5));
+
+    // create a Start button that changes button text to Finished (onclick) after 1 sec
+    function changeToFinished() {
+      const startButton = document.querySelector(".start-button");
+      // modify the button so that onclick it changes immediately to Loading... and then after 1 sec to Finished
+      startButton.innerHTML = "Loading...";
+      setTimeout(() => {
+        startButton.innerHTML = "Finished";
+      }, 1000);
+    }
+
+    // when clicking add to cart button display added bellow
+    let timeoutId; // defined outside function because new id gets generated on every function run
+    const added = () => {
+      const messageParagraph = document.querySelector(".added");
+      messageParagraph.innerHTML = "Added";
+
+      // if we click button again it will remove message 'added' faster because previous setTimeout is still active
+      // to fix that we need to modify the code so when we click button, it "refreshes" the 2 sec wait time, waits for 2 sec again and removes a message
+      clearTimeout(timeoutId); // cancel previous timeout
+
+      timeoutId = setTimeout(() => {
+        messageParagraph.innerHTML = "";
+      }, 2000);
+    };
+
+    // Example of messaging app
+    // with setInterval change document title every second
+    const messageAddButton = document.querySelector(".message-add-button");
+    const messageRemoveButton = document.querySelector(
+      ".message-remove-button"
+    );
+
+    // default message number
+    let messages = 2;
+    let intervalId2;
+    let isShowingNotification;
+
+    // start displaying messages on page first load
+    showNotification();
+
+    function showNotification() {
+      // if we are already showing the notification, stop this function on nect run because we don't want to create 2 intervals at the same time
+      if (isShowingNotification) {
+        // stop the functions if isShowingNotification is set to true
+        return;
+      }
+
+      isShowingNotification = true;
+
+      intervalId2 = setInterval(() => {
+        if (messages === 0) {
+          stopNotification();
+          return;
+        } else if (messages > 0) {
+          if (document.title === "Advanced Functions") {
+            document.title = `(${messages}) New Messages`;
+          } else {
+            document.title = "Advanced Functions";
+          }
+        }
+      }, 1000);
+    }
+
+    function stopNotification() {
+      isShowingNotification = false;
+      clearInterval(intervalId2);
+
+      document.title = "Advanced Functions";
+    }
+
+    const addMessage = () => {
+      messages++;
+      showNotification();
+    };
+    const removeMessage = () => {
+      messages--;
+      if (messages === 0) {
+        stopNotification();
+      }
+    };
   </script>
 </html>
