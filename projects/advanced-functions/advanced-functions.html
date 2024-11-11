@@ -319,5 +319,56 @@
     // Closure
     // -> if a function has access to a value, it will always have access to that value
     // more explanation inside todo-list.js under querySelectorAll
+
+    // ---------------------------------------------------------------------- //
+
+    // Additional exercises
+    // arrow funtion that multiplys 2 numbers
+    const multiply = (num1, num2) => num1 * num2;
+    console.log("multiply(2, 3) :>> ", multiply(2, 3));
+
+    // function that takes an array of numbers and return how many of them are positive (greater that 0)
+    let positiveCount = 0;
+    const countPositive = (arr) => {
+      arr.forEach((num) => {
+        if (num > 0) positiveCount++;
+      });
+      return positiveCount;
+    };
+    console.log(
+      "countPositive([-2, 3, -5, 7, 10]) :>> ",
+      countPositive([-2, 3, -5, 7, 10])
+    );
+
+    // function that takes and array of numbers and returns an array where each number is increased by 'num'
+    // create it using .map()
+    let addNumArray = [-2, -1, 0, 99];
+    const addNum = (array, num) => array.map((arrNum) => arrNum + num);
+    console.log("addNum(addNumArray, 2) :>> ", addNum(addNumArray, 2));
+
+    // function that takes an array of strings and returns an array where the string 'egg' is removed
+    // using filter
+    const removeEgg = (foods) => foods.filter((food) => food !== "egg");
+    console.log(
+      'removeEgg(["egg", "apple", "egg", "egg", "ham"]) :>> ',
+      removeEgg(["egg", "apple", "egg", "egg", "ham"])
+    );
+
+    // update the function above to only remove first two 'egg' strings
+    // use filter
+    let count = 0;
+    const removeEgg2 = (foods) => {
+      return foods.filter((food, index) => {
+        if (food === "egg" && count < 2) {
+          count++;
+          return false;
+        }
+        return true;
+      });
+    };
+    console.log(
+      'removeEgg2(["egg", "apple", "egg", "egg", "ham"]) :>> ',
+      removeEgg2(["egg", "apple", "egg", "egg", "ham"])
+    );
   </script>
 </html>

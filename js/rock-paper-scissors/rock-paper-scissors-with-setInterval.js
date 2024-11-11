@@ -24,23 +24,37 @@ document
 
 document
   .querySelector(".reset-score-button")
-  .addEventListener("click", () => resetScore());
+  .addEventListener("click", () => resetConfirmation());
 document
   .querySelector(".auto-play-button")
   .addEventListener("click", () => autoPlay());
+
+// add keydown to start Auto Play
+document.body.addEventListener("keydown", (event) => {
+  if (event.key === "a") autoPlay();
+});
+
+// add keydown to reset score
+document.body.addEventListener("keydown", (event) => {
+  if (event.key === "Backspace") resetConfirmation();
+});
 
 // eventListener on key down
 document.body.addEventListener("keydown", (event) => {
   // console.log("keydown");
   // console.log("event :>> ", event);
   // console.log("event.key :>> ", event.key);
-  if ((event.key = "r")) playGame("rock");
-  if ((event.key = "p")) playGame("paper");
-  if ((event.key = "s")) playGame("scissors");
+
+  if (event.key === "r") playGame("rock");
+  if (event.key === "p") playGame("paper");
+  if (event.key === "s") playGame("scissors");
 });
 
 function autoPlay() {
   if (!isAutoPlaying) {
+    // when auto playing change text to Stop Playing
+    document.querySelector(".auto-play-button").innerHTML = "Stop Playing";
+
     // setinterval returns a number and this number is like ID, we can use this ID to stop the interval
 
     // everytime we run the function we are gonna get a different variable so we need to put the variable outside the function
@@ -59,6 +73,8 @@ function autoPlay() {
 
     // need to change auto playin to false because we stopped playing
     isAutoPlaying = false;
+    // when auto playing is stopped change text to Auto Play
+    document.querySelector(".auto-play-button").innerHTML = "Auto Play";
   }
 }
 
@@ -127,6 +143,26 @@ function resetScore() {
   document.querySelector(".js-result").innerHTML = null;
   document.querySelector(".js-moves").innerHTML = null;
 }
+
+const resetConfirmation = () => {
+  const confirmationMessage = document.querySelector(".confirmation-message");
+  confirmationMessage.innerHTML = `Are you sure you want to reset the score?
+  <button class="confirm-reset-button">Yes</button>
+  <button class="decline-reset-button">No</button>`;
+
+  // eventListeners for reset score confirmation
+  document
+    .querySelector(".confirm-reset-button")
+    .addEventListener("click", () => {
+      resetScore();
+      document.querySelector(".confirmation-message").innerHTML = null;
+    });
+  document
+    .querySelector(".decline-reset-button")
+    .addEventListener("click", () => {
+      document.querySelector(".confirmation-message").innerHTML = null;
+    });
+};
 
 function updateScoreElement() {
   document.querySelector(
