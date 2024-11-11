@@ -48,6 +48,13 @@ function renderTodoList() {
     });
 
   // to use an evenetListener, delete button is just a string, to use is we need to put it inside html element
+
+  // Closure -> deleteTodo() with index that is passed inside
+  // index is defined inside forEach and it only exist inside forEach
+  // if we console log index outside forEach we will get error that the index is not defined
+
+  // but inner function deleteTodo() has access to that value
+  // and if we click delete in some time in the future, it will still have access to that value (if a function has access to a value it will always have access to that value)
 }
 
 document
